@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <script src="https://unpkg.com/netlify-auth-providers"></script>
+  <link rel="icon" href="<%= BASE_URL %>icon.png">
+  <title>Zekerxa</title>
+</head>
+
+<body>
+  <form name="SignUp" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="tel" />
+    <input type="text" name="code">
+    <input type="password" name="password" />
+  </form>
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="tel" />
+    <input type="text" name="code">
+    <input type="password" name="password" />
+  </form>
+
+  <noscript>
+    <strong>I'm so sorry but my website doesn't work properly without JavaScript enabled.</strong>
+    <div>
+      <strong>Please enable it to continue.</strong>
+    </div>
+  </noscript>
+  
+  <div class="container" hidden>
+      <b-row class="justify-content-center">
+        <h1>GitHub Auth Demo:</h1>
+        <p>
+          <a href="#" id="login">Authenticate</a>
+        </p>
+        <p id="output"></p>
+      </b-row>
+    </div>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

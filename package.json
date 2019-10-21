@@ -1,0 +1,87 @@
+{
+  "name": "function",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "jsonserver": "json-server --watch src/db.json",
+    "lambda-serve": "netlify-lambda serve function",
+    "lambda-build": "netlify-lambda build function",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "@netlify/open-api": "^0.11.4",
+    "@netlify/zip-it-and-ship-it": "^0.3.1",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.4",
+    "git": "^0.1.5",
+    "json-server": "^0.15.1",
+    "netlify": "^2.4.8",
+    "netlify-cli": "^2.19.0",
+    "netlify-lambda": "^1.6.3",
+    "node-fetch": "^2.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "swagger-client": "^3.9.5",
+    "vue": "^2.6.10",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.3",
+    "vuepress": "^1.2.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@vue/cli-plugin-eslint": "^3.12.0",
+    "@vue/cli-plugin-typescript": "^3.12.0",
+    "@vue/cli-service": "^3.12.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "typescript": "^3.4.3",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb",
+      "@vue/typescript"
+    ],
+    "rules": {
+      "vue/html-indent": [
+        "error",
+        "tab"
+      ],
+      "vue/html-quotes": [
+        "error",
+        "double"
+      ]
+    },
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "ecmaVersion": 2017
+    },
+    "globals": {
+      "process": true,
+      "require": true,
+      "module": true
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

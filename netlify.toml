@@ -1,0 +1,3 @@
+[build]
+ function = "dist"
+ publish = "dist"
