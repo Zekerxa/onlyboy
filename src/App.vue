@@ -6,28 +6,28 @@
       class="header position-fixed w-100 p-0"
       :style="{background : scrollchange}"
     >
-      <b-navbar-brand href="#" class="headername pl-2">Function</b-navbar-brand>
+      <b-navbar-brand href="#" class="headername pl-2">{{Function}}</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse" class="pl-2 pr-2 mr-1" :style="{background : bgicon}">
         <i class="fa fa-bars text-info"></i>
       </b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-       <b-nav-item href="#">
+          <b-nav-item href="#">
             <router-link class="nav-link text-light ml-2" to="/">Home</router-link>
           </b-nav-item>
-          
+
           <b-nav-item href="#">
             <router-link class="nav-link text-light ml-2" to="/about">About</router-link>
           </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-         <b-nav-item class="inline-block text-center" @click="music">
-             <span class="musicicon nav-link" :style="{background : bgicon}">
-            <i  :class="[icon ? ban : notban]" class="fa text-info"></i>
-             </span>
-         </b-nav-item>
-          <b-nav-item href="#" >
+          <b-nav-item class="inline-block text-center" @click="music">
+            <span class="musicicon nav-link" :style="{background : bgicon}">
+              <i :class="[icon ? ban : notban]" class="fa text-info"></i>
+            </span>
+          </b-nav-item>
+          <b-nav-item href="#">
             <router-link class="nav-link text-light ml-2" to="/login1">Login</router-link>
           </b-nav-item>
           <b-nav-item href="#">
@@ -87,7 +87,8 @@ export default {
       icon: "",
       bgicon: "",
       choose: false,
-      scrollchange: ""
+      scrollchange: "",
+      Function: "ZEKERXA"
     };
   },
   methods: {
@@ -132,9 +133,6 @@ export default {
 .navlinkcolor {
   color: #0f0;
 }
-.navbar-collapse{
-  margin-bottom:-15px;
-}
 .hero-img {
   width: 100vw;
   height: 75vh;
@@ -150,9 +148,8 @@ export default {
   .hero-img {
     height: 30vh;
   }
-  .navbar-collapse{
-  margin-bottom: auto;
+  .navbar-collapse {
+    margin-bottom: auto;
+  }
 }
-}
-
 </style>

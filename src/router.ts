@@ -4,7 +4,7 @@ import Home from './views/Home.vue';
 
 Vue.use(Router);
 const router = new Router({
-  mode:'history',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -12,12 +12,12 @@ const router = new Router({
       name: 'home',
       component: Home,
     },
-    { 
+    {
       path: '/about',
       name: 'about',
       component: () => import('./views/About.vue')
     },
-    { 
+    {
       path: '/lock/onlyboy',
       name: 'onlyboy',
       component: () => import('./views/unlock.vue')
@@ -33,9 +33,9 @@ const router = new Router({
       component: () => import('./components/404.vue')
     },
     {
-       path : '/502',
-       name : '502',
-       component: () => import('./components/serverdown.vue')
+      path: '/502',
+      name: '502',
+      component: () => import('./components/serverdown.vue')
     },
     {
       path: '/login',

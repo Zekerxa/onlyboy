@@ -26,25 +26,16 @@
           </b-col>
         </b-row>
       </b-card>
-    </b-row>
-
-       <b-row class="justify-content-center">
-         <b-col class="text-ceter">
-           <b-button @click="localhost"> Get </b-button>
-         </b-col>
-       </b-row>
-   
+    </b-row>   
   </b-container>
 </template>
 <script>
   
   const Swagger = require("swagger-client");
   const axios = require("axios");
-  const NetlifyAPI = require("netlify");
-  const client = new NetlifyAPI("4e94fe81-5865-44e0-8046-1cb68199f7ce");
-  const post = "";
+  const site_id = '8b13e8fd-a73a-4341-b6d7-9a61d8329248'
   const request = {
-    url: `https://z-function.netlify.com/db.json`,
+    url: `https://api.netlify.com/api/v1/submissions?${site_id}=41b875be-e034-498d-8500-5d4e1cc58f0b&state=ham&page=1&per_page=1`,
     method: "GET",
     server: "Netlify",
     headers: {
@@ -92,16 +83,6 @@ export default {
       post: "",
       get : ""
     };
-  },
-  methods: {
-    localhost(){
-      const axios = require('axios');
-      axios.get('https://z-function.netlify.com/db.json',this.get)
-       .then((req)=> {
-         console.log(req.data)
-         this.get = req.data
-       });
-    }
   }
 };
 </script>
