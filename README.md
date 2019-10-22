@@ -20,6 +20,4 @@
 -git push -u origin master
 ```
 
-zinmin.htet.zmh.00@gmail.com
-
 zekerxafacebook1
