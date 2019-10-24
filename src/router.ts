@@ -53,12 +53,12 @@ const router = new Router({
       component: () => import('./netlifyforms/SignUpForms.vue')
     },
     {
-      path: '/thanks',
+      path: '/success',
       name: 'success',
       component: () => import('./netlifyforms/SubmissionSuccess.vue')
     },
     {
-      path: '/404',
+      path: '/fail',
       name: 'fail',
       component: () => import('./netlifyforms/SubmissionFail.vue')
     },

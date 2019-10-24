@@ -1,104 +1,121 @@
 <template>
-  <div class="question-form mt-5" id="show-me" :onload="load()">
-    <b-row class="justifycontent-center">
-      <b-col class="text-center text-success">
-        <h3>Free Sign Up</h3>
-      </b-col>
+  <b-container class="mt-5" @keyup="loadname">
+    <b-row class="justify-content-center">
     </b-row>
     <b-row class="justify-content-center">
-      <b-alert variant="danger" :show="show">{{ alert }}</b-alert>
+      <div class="m-3">
+        <form method="post" @submit.prevent="Register">
+          <div class="text-success text-center text-uppercase">
+            <h3>Free Sign Up</h3>
+          </div>
+          <input type="hidden" name="form-name" value="SignUp" />
+          <ul>
+            <li>
+              <label for="name-error">Username :</label>
+              <input
+                class="form-control"
+                :class="[namevalid]"
+                required
+                type="text"
+                name="name"
+                id="name-error"
+                v-model="Signup.name"
+                @input="ev => form.name = ev.target.value"
+                placeholder="Enter your name"
+              />
+<small id="name-error" class="text-muted pl-1">Username must be used to login</small>
+              <div class="invalid-feedback">Username already exist . . .</div>
+            </li>
+            <li>
+              <label for="email-error">Email :</label>
+              <input
+                class="form-control"
+                :class="[emailvalid]"
+                required
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+                id="email-error"
+                v-model="Signup.email"
+                @input="ev => form.email = ev.target.value"
+              /><small id="name-error" class="text-muted pl-1">Eg. @example.com</small>
+              <div class="invalid-feedback">Email address already used . . .</div>
+            </li>
+            <li>
+              <label>Phone : </label>
+                <input
+                  class="form-control"
+                  type="tel"
+                  placeholder="Enter your phone"
+                  name="tel"
+                  id="tel-error"
+                  v-model="Signup.tel"
+                  @input="ev => form.tel = ev.target.value"
+                />
+                <small id="tel-error" class="text-muted pl-1">Eg. +959xxxxxxxxx (or) 09xxxxxxxx  </small>
+             
+            </li>
+            <li>
+              <label>
+                Country Code :
+                <input
+                  type="text"
+                  placeholder="Optional"
+                  name="code"
+                  @input="ev => form.code = ev.target.value"
+                />
+              </label>
+            </li>
+            <li>
+              <label>Password :</label>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Enter your password "
+                v-model="Signup.password"
+                name="password"
+                required
+                :class="[passwordvalid]"
+                id="password-error"
+                @input="ev => form.password = ev.target.value"
+              />
+              <small id="password-error" class="text-muted pl-1">Must be greater than 7 characters long.</small>
+              <div class="invalid-feedback"></div>
+            </li>
+            <li class="text-center m-2">
+              <div data-netlify-recaptcha="true"></div>
+            </li>
+            <li class="text-center">
+              <b-button variant="success" type="submit" class="submit-button text-center">Register</b-button>
+            </li>
+          </ul>
+        </form>
+      </div>
     </b-row>
-    <form method="post" @submit.prevent="Register">
-      <input type="hidden" name="form-name" value="SignUp" />
-      <ul>
-        <li>
-          <label>
-            Your Name :
-            <input
-              type="text"
-              name="name"
-              v-model="name"
-              @input="ev => form.name = ev.target.value"
-              placeholder="Enter your name"
-            />
-          </label>
-        </li>
-        <li>
-          <label for>
-            Your Email :
-            <input
-              type="email"
-              placeholder="Enter your email"
-              name="email"
-              v-model="email"
-              @input="ev => form.email = ev.target.value"
-            />
-          </label>
-        </li>
-        <li>
-          <label>
-            Your Phone :
-            <input
-              type="tel"
-              placeholder="Enter your phone"
-              name="tel"
-              v-model="tel"
-              @input="ev => form.tel = ev.target.value"
-            />
-          </label>
-        </li>
-        <li>
-          <label>
-            Country Code :
-            <input
-              type="text"
-              placeholder="Optional"
-              name="code"
-              @input="ev => form.code = ev.target.value"
-            />
-          </label>
-        </li>
-        <li>
-          <label for>
-            Your Password :
-            <input
-              type="password"
-              placeholder="Enter your password "
-              v-model="password"
-              name="password"
-              @input="ev => form.password = ev.target.value"
-            />
-          </label>
-        </li>
-        <li class="text-center" v-show="check">
-          <b-button variant="warning" disabled>Checking....</b-button>
-        </li>
-        <li class="text-center" v-show="register">
-          <b-button variant="success" type="submit" class="submit-button text-center">Register</b-button>
-        </li>
-      </ul>
-    </form>
-  </div>
+  </b-container>
 </template>
 
 <script>
+const Swagger = require("swagger-client");
+const req = require("./netlify");
 export default {
   name: "SignUp",
   data() {
     return {
-      show: false,
-      check: true,
-      register: false,
-      email: "",
-      name: "",
-      tel: "",
-      password: "",
-      alert: "",
-      alertmessage: {
-        name: "Username can't be less than 7 . . .",
-        email: "Your email address look like doesn't exist . . .",
-        password: "Password can't be less than 7 . . ."
+      register: true,
+      emailvalid: "",
+      namevalid: "",
+      passwordvalid: "",
+      namesuccess: false,
+      emailsuccess: false,
+      passwordsuccess:false,
+      Signup: {
+        email: "",
+        name: "",
+        tel: "",
+        password: ""
       },
+      alert: "",
       form: {
         name: "",
         question: "",
@@ -112,19 +129,53 @@ export default {
     };
   },
   methods: {
-    load() {
-      if (
-        this.email.endsWith("@gmail.com") &&
-        this.name.length > 6 &&
-        this.password.length > 6 &&
-        (this.tel.startsWith("+959") || this.tel.startsWith("09"))
-      ) {
-        this.register = true;
-        this.check = false;
-      } else {
-        this.register = false;
-        this.check = true;
-      }
+    loadname() {
+      Swagger.http(req).then(get => {
+        const SignUp = get.body;
+        SignUp.filter(users => {
+          if (this.Signup.name == users.data.name) {
+            this.namevalid = "is-invalid";
+            this.namesuccess = false;
+          } else if (this.Signup.name.length > 7) {
+            this.namevalid = "is-valid";
+            this.namesuccess = true;
+          } else if (this.Signup.name.length < 7) {
+            this.namevalid = "";
+          }
+        });
+      });
+
+        Swagger.http(req).then(get => {
+         const SignUp = get.body;
+         SignUp.filter(users => {
+           if (this.Signup.password == users.data.password) {
+             this.passwordvalid = "is-invalid";
+             this.passwordsuccess = false;
+           } else if (this.Signup.password.length > 7) {
+             this.passwordvalid = "is-valid";
+             this.passwordsuccess = true;
+           } else if (this.Signup.password.length < 7) {
+             this.passwordvalid = "";
+           }
+         });
+       });
+
+      Swagger.http(req).then(get => {
+        const SingUp = get.body;
+        SingUp.filter(users => {
+          switch (users.data.email) {
+            case (this.Signup.email):
+              this.emailvalid = "is-invalid";
+              this.emailsuccess = true;
+              break;
+            default:
+              this.emailsuccess = true;
+              this.emailvalid = ''
+              break;
+          }
+        });
+      });
+
     },
     encode(data) {
       return Object.keys(data)
@@ -144,67 +195,40 @@ export default {
       })
         .then(() => {
           if (
-            this.email.endsWith("@gmail.com") &&
-            this.name.length > 6 &&
-            this.password.length > 6
+            this.emailsuccess == true &&
+            this.namesuccess == true &&
+            this.passwordsuccess == true &&
+            this.Signup.password.length >= 7 &&
+            (this.Signup.tel.startsWith('09') || this.Signup.tel.startsWith('+959'))
           ) {
-            this.$router.push("thanks");
-            const request = {
-              url: `https://z-function.netlify.com/db.json`,
-              method: "POST",
-              server: "Netlify",
-              headers: {
-                "Access-Control-Allow-Headers": "*",
-                "access-control-allow-methods": "POST",
-                "Access-Control-Allow-Origin": "*",
-                "content-type": "application/json",
-                "Accept-Encoding": "gzip, deflate, br",
-                "www-authenticate": "Basic",
-                "content-type": "application/json",
-                "authorization": "Bearer 4e94fe81-5865-44e0-8046-1cb68199f7ce",
-                "if-none-match": "82aadbe778f085a198c9d68ed0a7a480-ssl",
-                "sec-fetch-site": "same-origin"
-              },
-              withCredentials: false,
-              responseType: "json",
-              responseEncoding: "utf8",
-              xsrfCookieName: "XSRF-TOKEN",
-              xsrfHeaderName: "X-XSRF-TOKEN"
-            };
-            const axios = require("axios");
-            axios.post("https://z-function.netlify.com/db.json", {
-              name: "this.name",
-              email: "this.email",
-              tel: "this.tel",
-              password: this.password
-            });
-          } else if (this.name.length < 6) {
-            this.alert = this.alertmessage.name;
-            this.show = true;
-            this.name = "";
-            this.password = "";
-            this.email = "";
-          } else if (!this.email.endsWith("@gmail.com")) {
-            this.alert = this.alertmessage.email;
-            this.show = true;
-            this.show = true;
-            this.name = "";
-            this.password = "";
-            this.email = "";
-          } else if (this.password.length < 6) {
-            this.alert = this.alertmessage.password;
-            this.show = true;
-            this.show = true;
-            this.name = "";
-            this.password = "";
-            this.email = "";
-          } else {
-            this.$router.push("404");
+            this.$router.push("success");
           }
         })
-        .catch(() => {
-          this.$router.push("404");
+        .catch(e => {
+          console.log(e);
+          this.$router.push("fail");
         });
+    },
+    noti() {
+      const number = Math.floor(Math.random() * 5 + 1);
+      console.log(number);
+      switch (number) {
+        case 1:
+          alert("Username and Password at least 7 letters . . .");
+          break;
+        case 2:
+          alert("Phone number should be start with (+959) or (09)");
+          break;
+        case 3:
+          alert("Plz enter your existing email . . .");
+          break;
+        case 4:
+          alert("Email should be @something.com . . .");
+          break;
+        default:
+          alert("Need to fills to correct forms . . .");
+          break;
+      }
     }
   }
 };
@@ -213,6 +237,7 @@ export default {
 <style lang="scss">
 body {
   text-align: left;
+  background: rgb(21, 18, 34);
 }
 li {
   margin-bottom: 1em;
@@ -238,13 +263,16 @@ label {
   margin: 50px 0px;
 }
 form {
-  background: rgb(248, 248, 248);
   padding: 3em;
   background: #fff;
   color: rgba(14, 30, 37, 0.54);
   border-radius: 8px;
   -webkit-box-shadow: 0 1px 6px 0 rgba(14, 30, 37, 0.12);
   box-shadow: 0 1px 6px 0 rgba(14, 30, 37, 0.12);
+  h3 {
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
 }
 input[type="radio"] {
   position: absolute;

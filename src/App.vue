@@ -7,7 +7,7 @@
       :style="{background : scrollchange}"
     >
       <b-navbar-brand href="#" class="headername pl-2">{{Function}}</b-navbar-brand>
-      <b-navbar-toggle target="nav-collapse" class="pl-2 pr-2 mr-1" :style="{background : bgicon}">
+      <b-navbar-toggle @click="load(1)" target="nav-collapse" class="pl-2 pr-2 mr-1" :style="{background : bgicon}">
         <i class="fa fa-bars text-info"></i>
       </b-navbar-toggle>
 
@@ -28,10 +28,10 @@
             </span>
           </b-nav-item>
           <b-nav-item href="#">
-            <router-link class="nav-link text-light ml-2" to="/login1">Login</router-link>
+            <router-link class="nav-link text-light ml-2" to="/login">Login</router-link>
           </b-nav-item>
           <b-nav-item href="#">
-            <router-link class="nav-link text-light ml-2" to="/register">Sing Up</router-link>
+            <router-link class="nav-link text-light ml-2" to="/register">Sign Up</router-link>
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -101,11 +101,15 @@ export default {
         console.log("Pause...");
       }
     },
-    load() {
-      if (scrollY > 100) {
+    load(e) {
+      if (scrollY > 105) {
         this.scrollchange = "#17a2b8";
         this.bgicon = "#fff";
-      } else if (scrollY == 0) {
+      } else if(e == 1){
+         this.scrollchange = "#17a2b8";
+        this.bgicon = "#fff";
+      }
+      else if (scrollY == 0) {
         this.scrollchange = "transparent";
         this.bgicon = "transparent";
       } else {
@@ -136,6 +140,9 @@ export default {
 .hero-img {
   width: 100vw;
   height: 75vh;
+}
+.navbar-collapse{
+  padding-bottom: -15px;
 }
 .musicicon {
   border-radius: 5px;

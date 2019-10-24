@@ -11,19 +11,13 @@
 </head>
 
 <body>
-  <form name="SignUp" netlify netlify-honeypot="bot-field" hidden>
+  <form name="SignUp" netlify netlify-honeypot="bot-field" data-netlify-recaptcha="true" hidden>
     <input type="text" name="name" />
-    <input type="email" name="email" />
+    <input type="email" name="email" /> 
     <input type="tel" name="tel" />
     <input type="text" name="code">
     <input type="password" name="password" />
-  </form>
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <input type="tel" name="tel" />
-    <input type="text" name="code">
-    <input type="password" name="password" />
+    <div data-netlify-recaptcha="true"></div>
   </form>
 
   <noscript>
