@@ -1,7 +1,6 @@
 <template>
   <b-container class="mt-5" @keyup="loadname">
-    <b-row class="justify-content-center">
-    </b-row>
+    <b-row class="justify-content-center"></b-row>
     <b-row class="justify-content-center">
       <div class="m-3">
         <form method="post" @submit.prevent="Register">
@@ -23,7 +22,7 @@
                 @input="ev => form.name = ev.target.value"
                 placeholder="Enter your name"
               />
-<small id="name-error" class="text-muted pl-1">Username must be used to login</small>
+              <small id="name-error" class="text-muted pl-1">Username must be used to login</small>
               <div class="invalid-feedback">Username already exist . . .</div>
             </li>
             <li>
@@ -38,22 +37,22 @@
                 id="email-error"
                 v-model="Signup.email"
                 @input="ev => form.email = ev.target.value"
-              /><small id="name-error" class="text-muted pl-1">Eg. @example.com</small>
+              />
+              <small id="name-error" class="text-muted pl-1">Eg. @example.com</small>
               <div class="invalid-feedback">Email address already used . . .</div>
             </li>
             <li>
-              <label>Phone : </label>
-                <input
-                  class="form-control"
-                  type="tel"
-                  placeholder="Enter your phone"
-                  name="tel"
-                  id="tel-error"
-                  v-model="Signup.tel"
-                  @input="ev => form.tel = ev.target.value"
-                />
-                <small id="tel-error" class="text-muted pl-1">Eg. +959xxxxxxxxx (or) 09xxxxxxxx  </small>
-             
+              <label>Phone :</label>
+              <input
+                class="form-control"
+                type="tel"
+                placeholder="Enter your phone"
+                name="tel"
+                id="tel-error"
+                v-model="Signup.tel"
+                @input="ev => form.tel = ev.target.value"
+              />
+              <small id="tel-error" class="text-muted pl-1">Eg. +959xxxxxxxxx (or) 09xxxxxxxx</small>
             </li>
             <li>
               <label>
@@ -79,14 +78,14 @@
                 id="password-error"
                 @input="ev => form.password = ev.target.value"
               />
-              <small id="password-error" class="text-muted pl-1">Must be greater than 7 characters long.</small>
+              <small
+                id="password-error"
+                class="text-muted pl-1"
+              >Must be greater than 7 characters long.</small>
               <div class="invalid-feedback"></div>
             </li>
-            <li class="text-center m-2">
-              <div data-netlify-recaptcha="true"></div>
-            </li>
             <li class="text-center">
-              <b-button variant="success" type="submit" class="submit-button text-center">Register</b-button>
+              <b-button variant="success" type="submit" class="submit-button text-center w-75 mt-2 text-bold">Register</b-button>
             </li>
           </ul>
         </form>
@@ -108,7 +107,7 @@ export default {
       passwordvalid: "",
       namesuccess: false,
       emailsuccess: false,
-      passwordsuccess:false,
+      passwordsuccess: false,
       Signup: {
         email: "",
         name: "",
@@ -136,46 +135,45 @@ export default {
           if (this.Signup.name == users.data.name) {
             this.namevalid = "is-invalid";
             this.namesuccess = false;
-          } else if (this.Signup.name.length > 7) {
+          } else if (this.Signup.name.length > 6) {
             this.namevalid = "is-valid";
             this.namesuccess = true;
-          } else if (this.Signup.name.length < 7) {
+          } else if (this.Signup.name.length < 6) {
             this.namevalid = "";
           }
         });
       });
 
-        Swagger.http(req).then(get => {
-         const SignUp = get.body;
-         SignUp.filter(users => {
-           if (this.Signup.password == users.data.password) {
-             this.passwordvalid = "is-invalid";
-             this.passwordsuccess = false;
-           } else if (this.Signup.password.length > 7) {
-             this.passwordvalid = "is-valid";
-             this.passwordsuccess = true;
-           } else if (this.Signup.password.length < 7) {
-             this.passwordvalid = "";
-           }
-         });
-       });
+      Swagger.http(req).then(get => {
+        const SignUp = get.body;
+        SignUp.filter(users => {
+          if (this.Signup.password == users.data.password) {
+            this.passwordvalid = "is-invalid";
+            this.passwordsuccess = false;
+          } else if (this.Signup.password.length > 7) {
+            this.passwordvalid = "is-valid";
+            this.passwordsuccess = true;
+          } else if (this.Signup.password.length < 7) {
+            this.passwordvalid = "";
+          }
+        });
+      });
 
       Swagger.http(req).then(get => {
         const SingUp = get.body;
         SingUp.filter(users => {
           switch (users.data.email) {
-            case (this.Signup.email):
+            case this.Signup.email:
               this.emailvalid = "is-invalid";
               this.emailsuccess = true;
               break;
             default:
               this.emailsuccess = true;
-              this.emailvalid = ''
+              this.emailvalid = "";
               break;
           }
         });
       });
-
     },
     encode(data) {
       return Object.keys(data)
@@ -199,13 +197,13 @@ export default {
             this.namesuccess == true &&
             this.passwordsuccess == true &&
             this.Signup.password.length >= 7 &&
-            (this.Signup.tel.startsWith('09') || this.Signup.tel.startsWith('+959'))
+            (this.Signup.tel.startsWith("09") ||
+              this.Signup.tel.startsWith("+959"))
           ) {
             this.$router.push("success");
           }
         })
-        .catch(e => {
-          console.log(e);
+        .catch(() => {
           this.$router.push("fail");
         });
     },

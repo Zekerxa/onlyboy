@@ -7,3 +7,11 @@
 port = 1234
 command = "yarn start"
 publish = "src"
+
+[[redirects]]
+  from = "/login1"
+  to = "/register"
+  status = 301
+  force = false
+  query = {path = ":path"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}

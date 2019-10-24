@@ -1,24 +1,24 @@
 <template>
   <b-container>
     <b-row class="justify-content-center mt-3">
-      <div class="loginform">
+      <div class="loginform text-center">
         <form method="GET" @submit.prevent="login">
           
           <h3 class="text-success text-center">Log In Form</h3>
           <p class="text-dark">Use your Sign Up Account</p>
           <ul>
             <li>
-              <label for="username-error">Username :</label>
+              <label for="username-error">Username </label>
               <b-form-input placeholder="Enter username" v-model="username" id="username-error" name="name" type="text" :state="error" />
               <b-form-invalid-feedback id="username-error">Check username again . . .</b-form-invalid-feedback>
             </li>
             <li>
-              <label for="password-error">Password :</label>
+              <label for="password-error">Password </label>
               <b-form-input placeholder="Enter your password" v-model="password" id="password-error" name="password" :state="error" type="password" />
               <b-form-invalid-feedback id="password-error">Check password agian . . .</b-form-invalid-feedback>
             </li>
             <li class="text-center">
-              <b-button variant="success" type="submit">Log In</b-button>
+              <b-button variant="dark" class="w-100" type="submit">Log In</b-button>
               <div class="text-center mt-3">
                 <a class="text-danger" href="forgot">Forgot password . . .</a>
               </div>
