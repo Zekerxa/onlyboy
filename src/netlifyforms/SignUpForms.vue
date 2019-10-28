@@ -1,8 +1,11 @@
 <template>
-  <b-container class="mt-5" @keyup="loadname">
-    <b-row class="justify-content-center"></b-row>
+  <div class="SignUpclass">
+    <b-container>
+    <b-row>
+      <div class="article"></div>
+    </b-row>
     <b-row class="justify-content-center">
-      <div class="m-3">
+      <div class="mt-5">
         <form method="post" @submit.prevent="Register">
           <div class="text-success text-center text-uppercase">
             <h3>Free Sign Up</h3>
@@ -11,110 +14,152 @@
           <ul>
             <li>
               <label for="name-error">Username :</label>
-              <input
-                class="form-control"
-                :class="[namevalid]"
-                required
-                type="text"
-                name="name"
-                id="name-error"
-                v-model="Signup.name"
-                @input="ev => form.name = ev.target.value"
-                placeholder="Enter your name"
-              />
-              <small id="name-error" class="text-muted pl-1">Username must be used to login</small>
-              <div class="invalid-feedback">Username already exist . . .</div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-user-circle"></i>
+                  </div>
+                </div>
+                <input
+                  class="form-control"
+                  :class="[namevalid]"
+                  required
+                  type="text"
+                  name="name"
+                  id="name-error"
+                  v-model="Signup.name"
+                  @input="ev => form.name = ev.target.value"
+                  placeholder="Enter your name"
+                  @keyup="loadname"
+                />
+                <div class="invalid-feedback"></div>
+              </div>      
+                  <small class="text-muted pl-1">Username must be used to login</small> 
             </li>
+
             <li>
               <label for="email-error">Email :</label>
-              <input
-                class="form-control"
-                :class="[emailvalid]"
-                required
-                type="email"
-                placeholder="Enter your email"
-                name="email"
-                id="email-error"
-                v-model="Signup.email"
-                @input="ev => form.email = ev.target.value"
-              />
-              <small id="name-error" class="text-muted pl-1">Eg. @example.com</small>
-              <div class="invalid-feedback">Email address already used . . .</div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                </div>
+                <input
+                  class="form-control"
+                  :class="[emailvalid]"
+                  required
+                  type="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  id="email-error"
+                  v-model="Signup.email"
+                  @input="ev => form.email = ev.target.value"
+                  @keyup="loademail"
+                /><div class="invalid-feedback"></div>
+              </div>
+              <small id="name-error" class="text-muted pl-1">Eg. @example.com</small>            
             </li>
+
             <li>
-              <label>Phone :</label>
-              <input
-                class="form-control"
-                type="tel"
-                placeholder="Enter your phone"
-                name="tel"
-                id="tel-error"
-                v-model="Signup.tel"
-                @input="ev => form.tel = ev.target.value"
-              />
-              <small id="tel-error" class="text-muted pl-1">Eg. +959xxxxxxxxx (or) 09xxxxxxxx</small>
+              <label for="tel-error">Phone :</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-mobile"></i>
+                  </div>
+                </div>
+                <input
+                  class="form-control"
+                  type="tel"
+                  placeholder="Enter your phone"
+                  name="tel"
+                  id="tel-error"
+                  v-model="Signup.tel"
+                  @input="ev => form.tel = ev.target.value"
+                />
+              </div>
+              <small class="text-muted pl-1">Eg. +959XXXXXXXXX</small>
             </li>
+
             <li>
-              <label>
-                Country Code :
+              <label for="code-error">Country Code :</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-globe"></i>
+                  </div>
+                </div>
                 <input
                   type="text"
+                  class="form-control"
                   placeholder="Optional"
                   name="code"
+                  id="code-error"
                   @input="ev => form.code = ev.target.value"
                 />
-              </label>
+              </div>
+              <small id="code-error" class="text-muted pl-1">Option , Eg. 11231</small>
             </li>
+
             <li>
-              <label>Password :</label>
-              <input
-                class="form-control"
-                type="password"
-                placeholder="Enter your password "
-                v-model="Signup.password"
-                name="password"
-                required
-                :class="[passwordvalid]"
-                id="password-error"
-                @input="ev => form.password = ev.target.value"
-              />
+              <label for="password-error">Password :</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-key"></i>
+                  </div>
+                </div>
+                <input
+                  class="form-control"
+                  type="password"
+                  placeholder="Enter your password "
+                  v-model="Signup.password"
+                  name="password"
+                  required
+                  :class="[passwordvalid]"
+                  id="password-error"
+                  @input="ev => form.password = ev.target.value"
+                /><div class="invalid-feedback"></div>
+              </div>
               <small
-                id="password-error"
                 class="text-muted pl-1"
               >Must be greater than 7 characters long.</small>
-              <div class="invalid-feedback"></div>
+              
             </li>
             <li class="text-center">
-              <b-button variant="success" type="submit" class="submit-button text-center w-75 mt-2 text-bold">Register</b-button>
+              <b-button
+                variant="success"
+                type="submit"
+                class="submit-button text-center w-75 mt-2 text-bold"
+              >Register</b-button>
             </li>
           </ul>
         </form>
       </div>
     </b-row>
   </b-container>
+  </div>
 </template>
 
 <script>
-const Swagger = require("swagger-client");
-const req = require("./netlify");
+
 export default {
   name: "SignUp",
   data() {
     return {
       register: true,
       emailvalid: "",
-      namevalid: "",
-      passwordvalid: "",
+      namevalid: '',
+      passwordvalid:'',
       namesuccess: false,
       emailsuccess: false,
-      passwordsuccess: false,
       Signup: {
         email: "",
         name: "",
         tel: "",
         password: ""
       },
-      alert: "",
       form: {
         name: "",
         question: "",
@@ -123,57 +168,33 @@ export default {
         password: "",
         number: "",
         code: ""
-      },
-      status: {}
+      }
     };
   },
   methods: {
-    loadname() {
-      Swagger.http(req).then(get => {
-        const SignUp = get.body;
-        SignUp.filter(users => {
-          if (this.Signup.name == users.data.name) {
-            this.namevalid = "is-invalid";
-            this.namesuccess = false;
-          } else if (this.Signup.name.length > 6) {
-            this.namevalid = "is-valid";
-            this.namesuccess = true;
-          } else if (this.Signup.name.length < 6) {
-            this.namevalid = "";
-          }
-        });
-      });
-
-      Swagger.http(req).then(get => {
-        const SignUp = get.body;
-        SignUp.filter(users => {
-          if (this.Signup.password == users.data.password) {
-            this.passwordvalid = "is-invalid";
-            this.passwordsuccess = false;
-          } else if (this.Signup.password.length > 7) {
-            this.passwordvalid = "is-valid";
-            this.passwordsuccess = true;
-          } else if (this.Signup.password.length < 7) {
-            this.passwordvalid = "";
-          }
-        });
-      });
-
-      Swagger.http(req).then(get => {
-        const SingUp = get.body;
-        SingUp.filter(users => {
-          switch (users.data.email) {
-            case this.Signup.email:
-              this.emailvalid = "is-invalid";
-              this.emailsuccess = true;
-              break;
-            default:
-              this.emailsuccess = true;
-              this.emailvalid = "";
-              break;
-          }
-        });
-      });
+    loadname(){
+      const name  = this.Signup.name ;
+      if(name.length > 6 ){
+        this.namevalid = 'is-valid'
+        this.namesuccess = true
+      }else if(name.length < 6 && name.length >= 3 ){
+        this.namesuccess = false      
+        this.namevalid = 'is-invalid'
+      }else{
+        console.log('F')
+      }
+    },
+        loademail(){
+      const email = this.Signup.email;
+      if(email.endsWith('@gmail.com')){
+        this.emailvalid = 'is-valid'
+        this.emailsuccess = true
+      }else if(email.length >= 4 ){
+        this.emailsuccess = false      
+        this.emailvalid = 'is-invalid'
+      }else{
+        console.log('F')
+      }
     },
     encode(data) {
       return Object.keys(data)
@@ -195,70 +216,29 @@ export default {
           if (
             this.emailsuccess == true &&
             this.namesuccess == true &&
-            this.passwordsuccess == true &&
             this.Signup.password.length >= 7 &&
             (this.Signup.tel.startsWith("09") ||
               this.Signup.tel.startsWith("+959"))
           ) {
             this.$router.push("success");
+          }else{
+            alert('')
           }
         })
         .catch(() => {
           this.$router.push("fail");
         });
-    },
-    noti() {
-      const number = Math.floor(Math.random() * 5 + 1);
-      console.log(number);
-      switch (number) {
-        case 1:
-          alert("Username and Password at least 7 letters . . .");
-          break;
-        case 2:
-          alert("Phone number should be start with (+959) or (09)");
-          break;
-        case 3:
-          alert("Plz enter your existing email . . .");
-          break;
-        case 4:
-          alert("Email should be @something.com . . .");
-          break;
-        default:
-          alert("Need to fills to correct forms . . .");
-          break;
-      }
     }
   }
 };
 </script>
 
 <style lang="scss">
-body {
+.SignUpclass{
   text-align: left;
   background: rgb(21, 18, 34);
-}
-li {
-  margin-bottom: 1em;
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-p,
-span {
-  margin-left: 15px;
-  vertical-align: top;
-}
-p,
-label {
-  color: #0af;
-  font-weight: bold;
-}
 
-.article {
-  box-shadow: 3px 4px 30px #222;
-  margin: 50px 0px;
+  
 }
 form {
   padding: 3em;
@@ -267,12 +247,26 @@ form {
   border-radius: 8px;
   -webkit-box-shadow: 0 1px 6px 0 rgba(14, 30, 37, 0.12);
   box-shadow: 0 1px 6px 0 rgba(14, 30, 37, 0.12);
+
+li {
+  margin-bottom: 1em;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+  p,
+label {
+  color: #0af;
+  font-weight: bold;
+}
   h3 {
     margin-top: -20px;
     margin-bottom: 20px;
   }
-}
-input[type="radio"] {
+  input[type="radio"] {
   position: absolute;
   opacity: 0;
 }
@@ -297,7 +291,6 @@ textarea {
   font-weight: 500;
   line-height: 24px;
 }
-textarea {
-  height: 200px;
 }
+
 </style>

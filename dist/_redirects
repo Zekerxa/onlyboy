@@ -1,13 +1,15 @@
+#redirect link
+/cuties                        https://www.petsofnetlify.com
 
-# Redirect with a 301
-/home         /              301
-
-/login1 /register
-
-/cuties            https://www.petsofnetlify.com
-
-# Show a custom 404 for this path
-/en/* /en/404.html 404
+# Do not show  a custom 404 page
+/*                             /index.html
+/index.html/*                    /404
 
 # This will redirect all paths under /jobs except the path above
-/jobs/*                        /careers/:splat
+/jobs/*                        https://www.google.com
+
+#To cover the important link
+/unlock                 /login      
+      
+
+

@@ -18,14 +18,34 @@ const router = new Router({
       component: () => import('./views/About.vue')
     },
     {
-      path: '/lock/onlyboy',
+      path: '/unlock/onlyboy',
       name: 'onlyboy',
-      component: () => import('./views/unlock.vue')
+      component: () => import('./views/pagestart/onlyboy.vue')
+    },
+    {
+      path: '/unlock',
+      name: 'unlock',
+      component: () => import('./views/pagestart/unlock.vue')
+    },
+    {
+      path: '/unlock/PasswordTxtGenerator',
+      name: 'PasswordTxtGenerator',
+      component: () => import('./views/pagestart/PasswordTxtGenerator.vue')
+    },
+    {
+      path: '/unlock/How-To-Unlock-Bootloader',
+      name: 'Bootloader',
+      component: () => import('./views/pagestart/bootloader.vue')
+    },
+    {
+      path: '/unlock/Buddhist-Mp3-Audios',
+      name: 'Buddhist',
+      component: () => import('./views/pagestart/buddhistmp3.vue')
     },
     {
       path: '/login1',
       name: 'login1',
-      component: () => import('./components/lock.vue')
+      component: () => import('./components/login1.vue')
     },
     {
       path: '*',

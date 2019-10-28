@@ -1,7 +1,7 @@
 <template>
     <b-container>
-        <b-row class="justify-centent-center mt-5">
-            <b-col class="text-center">
+        <b-row class="justify-centent-center">
+            <b-col class="text-center article">
                 <h2 class="text-danger">Server Down !</h2>
                 <h4 class="mt-4 text-dark">Sorry ! Our server is not ready for this time ... </h4>
                 <h5 class="mt-3 text-dark">Plz .. try again back a few hours later....</h5>

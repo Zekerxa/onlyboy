@@ -6,14 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <script src="https://unpkg.com/netlify-auth-providers"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="icon" href="<%= BASE_URL %>icon.png">
   <title>Zekerxa</title>
 </head>
 
 <body>
-  <form name="SignUp" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <form name="SignUp" data-netlify="true" hidden>
     <input type="text" name="name" />
-    <input type="email" name="email" /> 
+    <input type="email" name="email" />
     <input type="tel" name="tel" />
     <input type="text" name="code">
     <input type="password" name="password" />
@@ -25,18 +26,28 @@
       <strong>Please enable it to continue.</strong>
     </div>
   </noscript>
-  
   <div class="container" hidden>
-      <b-row class="justify-content-center">
-        <h1>GitHub Auth Demo:</h1>
-        <p>
-          <a href="#" id="login">Authenticate</a>
-        </p>
-        <p id="output"></p>
-      </b-row>
-    </div>
+    <b-row class="justify-content-center">
+      <h1>GitHub Auth Demo:</h1>
+      <p>
+        <a href="#" id="login">Authenticate</a>
+      </p>
+      <p id="output"></p>
+    </b-row>
+  </div>
+ 
   <div id="app"></div>
-  <!-- built files will be auto injected -->
+        <!-- built files will be auto injected -->
+
+
+             <!-- //////// AOS //////// -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      offset: 200, // offset (in px) from the original trigger point
+    duration: 1000, 
+    });
+  </script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <template>
   <b-container>
-    <b-row class="justify-content-center mt-5">
-      <div class="text-center mt-3 text-warning page">
+    <b-row class="justify-content-center">
+      <div class="text-center text-warning page">
         <div class="card pt-3">
           <h4 class="">Sending . . . <i class="fas fa-pulse fa-spinner fa-fw"></i> </h4>
            <h5 class="m-3 text-success">E-mail will send to your account a few second later.</h5>
@@ -25,11 +25,14 @@ body{
   background: rgb(21, 18, 34);
 }
 .page{
-  width: 75vh;
+ top: 50%;
+ left: 50%;
+ position: absolute;
+ transform: translate(-50%,-50%)
 }
 @media (max-width: 576px) {
             .page {
-                width: 40vh;
+                width: 42vh;
             }
         }
 </style>

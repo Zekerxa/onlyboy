@@ -1,8 +1,13 @@
 <template>
-  <b-container>
-    <b-row class="justify-content-center mt-3">
-      <div class="loginform text-center">
-        <form method="GET" @submit.prevent="login">
+ <div class="SignUpclass loginclass">
+     <b-container>
+    <b-row>
+      <div class="article"></div>
+    </b-row>
+    <b-row class="justify-content-center ">
+      <div class="text-center">
+      <div class="mt-5">
+            <form method="GET" @submit.prevent="login">
           
           <h3 class="text-success text-center">Log In Form</h3>
           <p class="text-dark">Use your Sign Up Account</p>
@@ -20,50 +25,47 @@
             <li class="text-center">
               <b-button variant="dark" class="w-100" type="submit">Log In</b-button>
               <div class="text-center mt-3">
-                <a class="text-danger" href="forgot">Forgot password . . .</a>
+                <b-button variant="light disabled">
+                  <a class="text-danger" href="">Forgot password . . .</a>
+                </b-button>
               </div>
             </li>
           </ul>
         </form>
       </div>
+      </div>
     </b-row>
-         <b-row class="justify-content-center mt-5">
+
+     <div class="justify-content-center mt-5">
+      <b-modal id="gate" centered hide-footer>
+        <template v-slot:modal-title>
+          <i class="fa fa-unlock"></i>
+          <code> Unlocked</code>
+        </template>
+        <div class="text-center">
+          <p class="text-center d-block">Now you are also member of Zekerxa Website</p>
+          <b-button variant="success" class="text-center m-2">
+            <router-link to="/unlock" class="text-light nav-link text-success">OPEN</router-link>
+          </b-button>
+        </div>
+      </b-modal>
+    </div>
+
+         <!-- <b-row class="justify-content-center mt-5">
          <div class="text-light">
            <router-link to="/login1">
              <b-button variant="success">Another Way</b-button>
            </router-link>
          </div>
-      </b-row>
+      </b-row> -->
   </b-container>
+ </div>
 </template>
 
 <script>
 const Swagger = require("swagger-client");
-const request = {
-  url: `https://api.netlify.com/api/v1/sites/8b13e8fd-a73a-4341-b6d7-9a61d8329248/forms/5dae8a8fdf8573000be0be1b/submissions?state=ham&page=1&per_page=20`,
-  method: "GET",
-  server: "Netlify",
-  statusCode: 200,
-  headers: {
-    "Access-Control-Allow-Headers": "*",
-    "access-control-allow-methods": "GET",
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json",
-    Origin: " https://app.netlify.com",
-    "Accept-Encoding": "gzip, deflate, br",
-    "www-authenticate": "Basic",
-    Authorization:
-      "Bearer a0835290848a78775d170d42dd3b7ed67f4d5f99520a6e601e084ec50c016209", //Main thing
-    "content-type": "application/json",
-    "sec-fetch-site": "same-origin"
-  },
-  withCredentials: false,
-  responseType: "application/json",
-  responseEncoding: "utf8",
-  xsrfCookieName: "XSRF-TOKEN",
-  xsrfHeaderName: "X-XSRF-TOKEN"
-};
-import SingUp from "@/netlifyforms/SignUpForms.vue";
+const request = require('../netlifyforms/netlify');
+import {SingUp} from "@/netlifyforms/SignUpForms.vue";
 export default {
   data() {
     return {
@@ -78,14 +80,14 @@ export default {
     login() {
       Swagger.http(request)
         .then(get => {
-          console.log(get.status + " OK")
+          // console.log(get.status + " OK") 
           const SignUp = get.body;
           SignUp.filter(users => {
             if (
               users.data.password == this.password &&
               users.data.name == this.username
             ) {
-              this.$router.push("/lock/onlyboy");
+               this.$bvModal.show("gate");
             } else {
               this.error = false
               this.password = ''
@@ -99,4 +101,10 @@ export default {
     }
   }
 };
-</script>
+</script> 
+
+<style lang="scss">
+.loginclass{
+  height: 100vh;
+}
+</style>

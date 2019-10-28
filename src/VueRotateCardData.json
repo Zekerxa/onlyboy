@@ -1,0 +1,46 @@
+{
+    "GlobalData" : [
+      {
+         "MainHeader"  : "owner",
+         "PhotoLink"   : "https://scontent.frgn5-1.fna.fbcdn.net/v/t1.0-9/74587149_501699933717643_6665696442033635328_n.jpg?_nc_cat=108&_nc_oc=AQld36jJa2Y9Dw82uUFJ1q1fae6BUrb1lxtqSGQo0waS5f1_aGELKL-Cs-2T8gCXcD4&_nc_ht=scontent.frgn5-1.fna&oh=1219ac9ba47fc76a75fb8ba7b0f614f9&oe=5E553769",
+         "Message1"    : "I'm the creator of this website.",
+         "Message2"    : "What can I help you today?",
+        "SecPageTable" : [{
+           "Name"      :"Zin Min Htet",
+           "Age"       : 20,
+           "Work"      :"Front-end Web Developer",
+           "Address"   :"Myanmar/Yangon",
+           "Phone"     : "+959-687717767"
+         }],
+         "FacebookLink":"https://www.facebook.com/profile.php?id=100016329211576",
+         "SecPageMsg"  : ""
+         
+      },
+      {
+        "MainHeader"  : "partner",
+        "PhotoLink"   : "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.0-9/55485151_380948615823327_834819167054987264_n.jpg?_nc_cat=105&_nc_oc=AQkHCgZT4Ax9wNqR3E0RTRZFp1Po5WLyr90Kwaqh2An-ZBwKB9PeotEhDh7CFxrYsHY&_nc_ht=scontent.frgn5-2.fna&oh=9a96d6575ea934be79b2e9292d9683e8&oe=5E60D247",
+        "Message1"    : "I'm partner of Zekerxa",
+         "Message2"    : "What can I help you today?",
+        "SecPageTable" : [{
+          "Name"      :"Noe Noe",
+          "Age"       : 21,
+          "Work"      :"Web Designer",
+          "Address"   :"Myanmar/Yangon",
+          "Phone"     : "+959xxxxxxx"
+        }],
+        "FacebookLink":"https://www.facebook.com/sharmhan.htet",
+        "SecPageMsg"  : ""
+     },
+     {
+      "MainHeader"  : "Bot",
+      "PhotoLink"   : "https://media.istockphoto.com/videos/animation-modern-flat-chat-bot-with-speech-bubble-icons-video-id1020519776?s=640x640",
+      "Message1"    : "I'm bot",
+       "Message2"    : "Chat with me.",
+      "SecPageTable" : [{
+        "Name"      :"Xanover"
+      }],
+      "FacebookLink":"",
+      "SecPageMsg"  : "I'm bot,Do you want to chat with me?"
+   }
+    ]
+}

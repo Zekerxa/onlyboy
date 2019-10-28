@@ -1,4 +1,4 @@
-<template>
+<template class="appclass">
   <div id="app">
     <b-navbar
       toggleable="lg"
@@ -6,19 +6,24 @@
       class="header position-fixed w-100 p-0"
       :style="{background : scrollchange}"
     >
-      <b-navbar-brand href="#" class="headername pl-2">{{Function}}</b-navbar-brand>
-      <b-navbar-toggle @click="load(1)" target="nav-collapse" class="pl-2 pr-2 mr-1" :style="{background : bgicon}">
+      <b-navbar-brand class="headername text-light pl-2">{{Function}}</b-navbar-brand>
+      <b-navbar-toggle
+        @click="loadscroll(1)"
+        target="nav-collapse"
+        class="pl-2 pr-2 mr-1"
+        :style="{background : bgicon}"
+      >
         <i class="fa fa-bars text-info"></i>
       </b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="#">
-            <router-link class="nav-link text-light ml-2" to="/">Home</router-link>
+            <b-link class="nav-link text-light ml-2" to="/" active-class="">Home</b-link>
           </b-nav-item>
 
           <b-nav-item href="#">
-            <router-link class="nav-link text-light ml-2" to="/about">About</router-link>
+            <b-link class="nav-link text-light ml-2" to="/about">About</b-link>
           </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
@@ -28,56 +33,24 @@
             </span>
           </b-nav-item>
           <b-nav-item href="#">
-            <router-link class="nav-link text-light ml-2" to="/login">Login</router-link>
+            <b-link class="nav-link text-light ml-2" to="/login">Login</b-link>
           </b-nav-item>
           <b-nav-item href="#">
-            <router-link class="nav-link text-light ml-2" to="/register">Sign Up</router-link>
+            <b-link class="nav-link text-light ml-2"  to="/register">Sign Up</b-link>
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <div>
-      <div>
-        <b-carousel id="carousel-fade" style="text-shadow: 0px 0px 2px #000" fade indicators>
-          <b-carousel-slide
-            caption="Welcome to OnlyBoy"
-            class="hero-img"
-            img-src="https://images.unsplash.com/photo-1541445996863-0c22ef83f4cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            caption="What can I help you?"
-            class="hero-img"
-            img-src="https://images.unsplash.com/photo-1541445996863-0c22ef83f4cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            caption="Have a good day bro."
-            class="hero-img"
-            img-src="https://images.unsplash.com/photo-1541445996863-0c22ef83f4cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            caption=". . . . . ."
-            class="hero-img"
-            img-src="https://images.unsplash.com/photo-1541445996863-0c22ef83f4cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            caption="Welcome"
-            class="hero-img"
-            img-src="https://images.unsplash.com/photo-1541445996863-0c22ef83f4cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80"
-          ></b-carousel-slide>
-        </b-carousel>
-      </div>
-    </div>
 
-    <router-view />
-    <Footer />
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import Footer from "@/components/Footer.vue";
 const Rdmusic = Math.floor(Math.random() * 6 + 1);
-const musics = require(`./assets/music/${Rdmusic}.mp3`);
-const music = new Audio(musics);
-
+      const musics = require(`./assets/music/${Rdmusic}.mp3`);
+      const music = new Audio(musics);
+const ConsoleMsg = require('./stn');
+ConsoleMsg.stn("%cDon't waste your time!","color:#c20; font-size: 40px",console.log)
 export default {
   name: "app",
   data() {
@@ -95,21 +68,17 @@ export default {
     music() {
       this.icon = !this.icon;
       this.choose = !this.choose;
-      if (this.choose) music.play(), console.log("Loading....");
-      else {
-        music.pause();
-        console.log("Pause...");
-      }
+      if (this.choose) music.play();
+      else music.pause();
     },
-    load(e) {
+    loadscroll(e) {
       if (scrollY > 105) {
         this.scrollchange = "#17a2b8";
         this.bgicon = "#fff";
-      } else if(e == 1){
-         this.scrollchange = "#17a2b8";
+      } else if (e == 1) {
+        this.scrollchange = "#17a2b8";
         this.bgicon = "#fff";
-      }
-      else if (scrollY == 0) {
+      } else if (scrollY == 0) {
         this.scrollchange = "transparent";
         this.bgicon = "transparent";
       } else {
@@ -117,15 +86,22 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener("scroll", this.load);
-  },
-  components: {
-    Footer
+    document.addEventListener("scroll", this.loadscroll);
   }
 };
 </script>
 
 <style lang="scss">
+#app{
+  background: #fff;
+}
+body{
+  background: #fff;
+  .article {
+
+    margin-top: 55px;
+  }
+}
 .header {
   z-index: 10000;
 }
@@ -133,17 +109,27 @@ export default {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-family: "serif";
-}
-.navlinkcolor {
-  color: #0f0;
+  font-weight: 800;
 }
 .hero-img {
   width: 100vw;
   height: 75vh;
 }
-.navbar-collapse{
+.navbar-collapse {
   padding-bottom: -15px;
 }
+.nav-item {
+  margin-bottom: 0;
+  .nav-link{
+     &:hover{
+       color: #0a0!important
+     }
+      a{
+        font-weight: 600;
+      }
+    }
+}
+
 .musicicon {
   border-radius: 5px;
 }

@@ -13,7 +13,7 @@ const request = {
     "Accept-Encoding": "gzip, deflate, br",
     "www-authenticate": "Basic",
     Authorization:
-      "Bearer a0835290848a78775d170d42dd3b7ed67f4d5f99520a6e601e084ec50c016209", //Main thing
+      "Bearer 20a05fcce283f7eb616c467a301d46db3dc508088a92d183b9858096650bd32f", //Main thing
     "content-type": "application/json",
     "sec-fetch-site": "same-origin"
   },

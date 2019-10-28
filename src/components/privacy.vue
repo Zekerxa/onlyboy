@@ -106,3 +106,9 @@
         </ul>
     </div>
 </template>
+
+<style lang="scss">
+p{
+    line-height: 30px;
+}
+</style>
